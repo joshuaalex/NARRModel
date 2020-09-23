@@ -11,32 +11,31 @@ const Profile = new Schema({
         fname: { type: String, required: true },
         lname: { type: String, required: true },
         fullName: { type: String, default: '' },
-        age: { type: String, required: true},
-        address: { type: String, required: true},
-        phoneNum: { type: String, required: true},
-        phoneNum: { type: String, required: true},
+        age: { type: String},
+        address: { type: String},
+        phoneNum: { type: String},
         createdAt: { type: Date, default: Date.now },
         updatedAt: { type: Date, default: Date.now }
     },
     institutionInfo : {
-        institutionName : { type: String, require: true },
-        department : { type: String, require: true },
-        course : { type: String, require: true },
-        level : { type: Number, require: true },
-        registrationNum : { type: String, require: true },
-        institutionName : { type: String, require: true },
+        institutionName : { type: String},
+        department : { type: String},
+        course : { type: String },
+        level : { type: Number},
+        registrationNum : { type: String},
+        institutionName : { type: String},
 
     },
     researchWork : {
         personalResearch: [ {
-            title: { type: String, required: true },
-            year: { type: String, required: true },
-            author: { type: String, required: true },
-            isbn: { type: Number, required: true }
+            title: { type: String },
+            year: { type: String },
+            author: { type: String},
+            isbn: { type: Number }
         }],
         paperRead: [{
-            title: { type: String, required: true },
-            currentPage : { type: String, required: true }
+            title: { type: String},
+            currentPage : { type: String}
         }]
 
     },
@@ -50,7 +49,7 @@ const Profile = new Schema({
 });
 
 
-UserSchema.pre('save', function (next) {
+Profile.pre('save', function (next) {
     let me = this;
     me.fullName = me.fname + ', ' + me.lname;
     const salt = bcrypt.genSaltSync();
